@@ -40,7 +40,8 @@ ll.ppiEnable(0, comp.eCross, tog.tOut);
 // Watch for pin changes
 setWatch(function(e) {
   let timeDiff = e.time - lastPulse;
-  power = 3600 / timeDiff; // 1000imp/kwh -> 1000 pulses in 3600sec = 1kW
+  power = (360000000 / pulsePerKwh) / timeDiff; // 1000imp/kwh -> 1000 pulses in 3600sec = 1kW
+  power = Number(power.toFixed(0));
   counter++;
   update();
   lastPulse = e.time;
